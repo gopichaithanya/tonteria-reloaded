@@ -49,8 +49,8 @@ public class ManageBook extends HttpServlet {
 			response.getWriter().write("Libro inserito con successo");
 			break;
 		case 2:
-			//flag = csb.removeCustomer(email, password);
-			response.getWriter().write("Non ancora implementata");
+			bsb.removeBook(isbn);
+			response.getWriter().write("Libro eliminato con successo");
 			break;
 		case 3:
 		//	csb.login(email, password);
