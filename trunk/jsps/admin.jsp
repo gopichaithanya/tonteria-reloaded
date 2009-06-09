@@ -45,8 +45,8 @@ descrizione: <textarea name="description" rows="5" cols="30">descrizione</textar
 <fieldset>
   <legend>Scegli cosa fare</legend>
   Inserire un nuovo libro<input type="radio" name="choice" value="1"/><br>
-  rimuovere un libro <input type="radio" name="choice" value="2"/><br>
-  Cercare un libro <input type="radio" name="choice" value="3"/><br>
+  rimuovere un libro (dato l'isbn)<input type="radio" name="choice" value="2"/><br>
+  Visualizzare lista dei libri <input type="radio" name="choice" value="3"/><br>
 </fieldset>
 <br>
 <input type="submit">
