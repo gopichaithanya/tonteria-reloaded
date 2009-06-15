@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>tbookstore</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  <servlet>
+    <description>manageCustomers</description>
+    <display-name>customers</display-name>
+    <servlet-name>customers</servlet-name>
+    <servlet-class>servlets.ManageCustomers</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>customers</servlet-name>
+    <url-pattern>/customers</url-pattern>
+  </servlet-mapping>
+    <servlet>
+    <description></description>
+    <display-name>ManageBook</display-name>
+    <servlet-name>ManageBook</servlet-name>
+    <servlet-class>servlets.ManageBook</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ManageBook</servlet-name>
+    <url-pattern>/books</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CartServlet</display-name>
+    <servlet-name>CartServlet</servlet-name>
+    <servlet-class>servlets.CartServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CartServlet</servlet-name>
+    <url-pattern>/cart</url-pattern>
+  </servlet-mapping>
+</web-app>
