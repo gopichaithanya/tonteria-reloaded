@@ -1,0 +1,18 @@
+#Mon Jun 15 20:51:49 CEST 2009
+eclipse.preferences.version=1
+encoding//src/bean/stateless/Book.java=UTF-8
+encoding//src/bean/stateless/BookSB.java=UTF-8
+encoding//src/bean/stateless/BookSBBindingStub.java=UTF-8
+encoding//src/bean/stateless/BookSBService.java=UTF-8
+encoding//src/bean/stateless/BookSBServiceLocator.java=UTF-8
+encoding//src/bean/stateless/CartManagerSB.java=UTF-8
+encoding//src/bean/stateless/CartManagerSBBindingStub.java=UTF-8
+encoding//src/bean/stateless/CartManagerSBService.java=UTF-8
+encoding//src/bean/stateless/CartManagerSBServiceLocator.java=UTF-8
+encoding//src/bean/stateless/Customer.java=UTF-8
+encoding//src/bean/stateless/CustomerSB.java=UTF-8
+encoding//src/bean/stateless/CustomerSBBindingStub.java=UTF-8
+encoding//src/bean/stateless/CustomerSBService.java=UTF-8
+encoding//src/bean/stateless/CustomerSBServiceLocator.java=UTF-8
+encoding//src/bean/stateless/LineItem.java=UTF-8
+encoding//src/bean/stateless/Order.java=UTF-8
