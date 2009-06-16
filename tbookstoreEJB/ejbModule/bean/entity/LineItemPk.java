@@ -5,6 +5,10 @@ import java.io.Serializable;
 import javax.persistence.Embeddable;
 import javax.persistence.ManyToOne;
 
+/**
+ * @author mattia
+ * */
+
 @Embeddable
 public class LineItemPk implements Serializable{
 
