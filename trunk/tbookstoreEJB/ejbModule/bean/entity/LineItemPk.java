@@ -5,6 +5,8 @@ import java.io.Serializable;
 import javax.persistence.Embeddable;
 import javax.persistence.ManyToOne;
 
+import org.apache.commons.lang.builder.HashCodeBuilder;
+
 /**
  * @author mattia
  * */
@@ -37,24 +39,27 @@ public class LineItemPk implements Serializable{
 		this.order = order;
 	}
 
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
-
-		LineItemPk that = (LineItemPk) o;
-
-		if (book != null ? !book.equals(that.book) : that.book != null) return false;
-		if (order != null ? !order.equals(that.order) : that.order != null) return false;
-
-		return true;
+	public boolean equals(Object arg0) {
+		
+		boolean flag = false;
+		if(arg0 != null && arg0 instanceof LineItemPk){
+			final LineItemPk lipk = (LineItemPk)arg0;
+			if( this.book.equals(lipk.getBook()) && this.order.equals(lipk.getOrder()) )
+				flag = true;
+		}
+		return flag;
 	}
 
+	@Override
 	public int hashCode() {
-		int result;
-		result = (book != null ? book.hashCode() : 0);
-		result = 31 * result + (order != null ? order.hashCode() : 0);
-		return result;
+
+		final HashCodeBuilder builder = new HashCodeBuilder();
+		builder.append(this.getBook());
+		builder.append(this.getOrder());
+		
+		return builder.toHashCode();
 	}
+
 }
 
 

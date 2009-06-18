@@ -18,6 +18,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
+import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
@@ -45,7 +46,7 @@ public class Order implements Serializable {
 		this.orderId = orderId;
 	}
 	
-	@Column(name = "date")
+	@Column(name = "date", nullable = false)
 	@Temporal(value = TemporalType.TIMESTAMP)
 	public Date getDate() {
 		return date;
@@ -55,7 +56,7 @@ public class Order implements Serializable {
 		this.date = date;
 	}
 	
-	@Column(name = "payment_type")
+	@Column(name = "payment_type", nullable = false)
 	public String getPaymentType() {
 		return paymentType;
 	}
@@ -85,4 +86,29 @@ public class Order implements Serializable {
 		this.lineItems = lineItems;
 	}
 
+
+	@Override
+	public boolean equals(Object arg0) {
+		boolean flag = false;
+		if(arg0 != null && arg0 instanceof Order){
+			final Order o = (Order)arg0;
+			if(this.orderId == o.getOrderId())
+				flag = true;
+		}
+		return flag;
+	}
+
+
+	@Override
+	public int hashCode() {
+
+		final HashCodeBuilder builder = new HashCodeBuilder();
+		builder.append(this.orderId);
+		builder.append(this.customer);
+		builder.append(this.date);
+		builder.append(this.paymentType);
+		
+		return builder.toHashCode();
+	}
+	
 }
