@@ -9,6 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 
+import org.apache.commons.lang.builder.HashCodeBuilder;
+
 @Entity
 @Table(name = "LineItem")
 @AssociationOverrides({
@@ -32,7 +34,7 @@ public class LineItem implements java.io.Serializable {
 		return pk;
 	}
 
-	private void setPk(LineItemPk pk) {
+	public void setPk(LineItemPk pk) {
 		this.pk = pk;
 	}
 
@@ -44,22 +46,28 @@ public class LineItem implements java.io.Serializable {
 	public void setQuantity(long quantity) {
 		this.quantity = quantity;
 	}
-	
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
 
-		LineItem that = (LineItem) o;
 
-		if (getPk() != null ? !getPk().equals(that.getPk()) : that.getPk() != null) return false;
-
-		return true;
+	@Override
+	public boolean equals(Object arg0) {
+		boolean flag = false;
+		if(arg0 != null && arg0 instanceof LineItem){
+			final LineItem li = (LineItem)arg0;
+			if(this.pk.equals(li.getPk()))
+				flag = true;
+		}
+		return flag;
 	}
 
+
+	@Override
 	public int hashCode() {
-		return (getPk() != null ? getPk().hashCode() : 0);
+
+		final HashCodeBuilder builder = new HashCodeBuilder();
+		builder.append(this.quantity);
+		builder.append(this.getPk());
+		
+		return builder.toHashCode();
 	}
-
-
 
 }

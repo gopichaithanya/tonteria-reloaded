@@ -10,6 +10,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.apache.commons.lang.builder.HashCodeBuilder;
+
 @Entity
 @Table(name = "Book")
 public class Book implements Serializable {
@@ -28,7 +30,7 @@ public class Book implements Serializable {
 	private Date uploadDate;
 	//private List<LineItem> productItems = new LinkedList<LineItem>();
 	
-	@Column(name = "price")
+	@Column(name = "price", nullable = false)
 	public int getPrice() {
 		return price;
 	}
@@ -48,7 +50,7 @@ public class Book implements Serializable {
 		this.isbn = isbn;
 	}
 	
-	@Column(name = "title")
+	@Column(name = "title", nullable = false)
 	public String getTitle() {
 		return title;
 	}
@@ -57,7 +59,7 @@ public class Book implements Serializable {
 		this.title = title;
 	}
 	
-	@Column(name = "author")
+	@Column(name = "author", nullable = false)
 	public String getAuthor() {
 		return author;
 	}
@@ -66,7 +68,7 @@ public class Book implements Serializable {
 		this.author = author;
 	}
 	
-	@Column(name = "description")
+	@Column(name = "description", nullable = false)
 	public String getDescription() {
 		return description;
 	}
@@ -84,7 +86,7 @@ public class Book implements Serializable {
 		this.productItems = productItems;
 	}*/
 
-	@Column(name = "editor")
+	@Column(name = "editor", nullable = false)
 	public String getEditor() {
 		return editor;
 	}
@@ -94,7 +96,7 @@ public class Book implements Serializable {
 		this.editor = editor;
 	}
 
-	@Column(name = "image")
+	@Column(name = "image", nullable = false)
 	public String getImage() {
 		return image;
 	}
@@ -104,7 +106,7 @@ public class Book implements Serializable {
 		this.image = image;
 	}
 
-	@Column(name = "upload_date")
+	@Column(name = "upload_date", nullable = false)
 	@Temporal(value = TemporalType.TIMESTAMP)
 	public Date getUploadDate() {
 		return uploadDate;
@@ -114,8 +116,35 @@ public class Book implements Serializable {
 	public void setUploadDate(Date uploadDate) {
 		this.uploadDate = uploadDate;
 	}
-	
-	
+
+
+	@Override
+	public boolean equals(Object arg0) {
+		boolean flag = false;
+		if(arg0 != null && arg0 instanceof Book){
+			final Book b = (Book)arg0;
+			if(this.isbn.equals(b.getIsbn()))
+				flag = true;
+		}
+		return flag;
+	}
+
+
+	@Override
+	public int hashCode() {
+
+		final HashCodeBuilder builder = new HashCodeBuilder();
+		builder.append(this.author);
+		builder.append(this.isbn);
+		builder.append(this.title);
+		builder.append(this.price);
+		builder.append(this.editor);
+		builder.append(this.description);
+		builder.append(this.image);
+		return builder.toHashCode();
+	}
+
+
 	
 /*	public boolean equals(Object o) {
 		

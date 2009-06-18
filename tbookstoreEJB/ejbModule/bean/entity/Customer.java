@@ -10,7 +10,8 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
+
+import org.apache.commons.lang.builder.HashCodeBuilder;
 
 import com.sun.xml.bind.CycleRecoverable;
 
@@ -68,6 +69,29 @@ public class Customer implements Serializable, CycleRecoverable {
 	}
 	public void setOrders(Collection<Order> orders) {
 		this.orders = orders;
+	}
+	
+	@Override
+	public boolean equals(Object arg0) {
+		boolean flag = false;
+		if(arg0 != null && arg0 instanceof Customer){
+			final Customer c = (Customer)arg0;
+			if(this.email.equals(c.getEmail()))
+				flag = true;
+		}
+		return flag;
+	}
+
+
+	@Override
+	public int hashCode() {
+
+		final HashCodeBuilder builder = new HashCodeBuilder();
+		builder.append(this.email);
+		builder.append(this.name);
+		builder.append(this.surname);
+		builder.append(this.password);
+		return builder.toHashCode();
 	}
 	
 	//workaround per evitare cicli
