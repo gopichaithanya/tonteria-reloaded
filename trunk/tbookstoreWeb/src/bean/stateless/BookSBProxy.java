@@ -62,5 +62,17 @@ public class BookSBProxy implements bean.stateless.BookSB {
     return bookSB.removeBook(arg0);
   }
   
+  public bean.stateless.Book[] searchBook(java.lang.String[] arg0, java.lang.String[] arg1) throws java.rmi.RemoteException{
+    if (bookSB == null)
+      _initBookSBProxy();
+    return bookSB.searchBook(arg0, arg1);
+  }
+  
+  public bean.stateless.Book getBook(java.lang.String arg0) throws java.rmi.RemoteException{
+    if (bookSB == null)
+      _initBookSBProxy();
+    return bookSB.getBook(arg0);
+  }
+  
   
 }

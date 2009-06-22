@@ -10,6 +10,27 @@
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
   <servlet>
+    <description></description>
+    <display-name>validate</display-name>
+    <servlet-name>validateuser</servlet-name>
+    <servlet-class>servlets.ValidateUser</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>validateuser</servlet-name>
+    <url-pattern>/validateuser</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Search</display-name>
+    <servlet-name>Search</servlet-name>
+    <servlet-class>servlets.Search</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Search</servlet-name>
+    <url-pattern>/searchres</url-pattern>
+    <url-pattern>/searchres/</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <description>manageCustomers</description>
     <display-name>customers</display-name>
     <servlet-name>customers</servlet-name>
@@ -19,7 +40,7 @@
     <servlet-name>customers</servlet-name>
     <url-pattern>/customers</url-pattern>
   </servlet-mapping>
-    <servlet>
+  <servlet>
     <description></description>
     <display-name>ManageBook</display-name>
     <servlet-name>ManageBook</servlet-name>
@@ -37,6 +58,16 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>CartServlet</servlet-name>
-    <url-pattern>/cart</url-pattern>
+    <url-pattern>/shoppingcart/</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Viewer</display-name>
+    <servlet-name>Viewer</servlet-name>
+    <servlet-class>servlets.Viewer</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Viewer</servlet-name>
+    <url-pattern>/view</url-pattern>
   </servlet-mapping>
 </web-app>
