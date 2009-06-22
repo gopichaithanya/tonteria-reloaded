@@ -1,6 +1,7 @@
 package bean.stateless;
 
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.ejb.Remote;
@@ -25,13 +26,11 @@ public class BookSB implements BookSBI {
 	@PersistenceContext(unitName="tbookstoredb")
 	private EntityManager em;
 
-	@Override
 	public List<Book> findAllBooks() {
 		Query query = em.createQuery("Select b from Book b");
 		return (List<Book>) query.getResultList();
 	}
 
-	@Override
 	public Book insertBook(String title, String author, String isbn, int price, String editor, 
 			String imagePath, String description) {
 
@@ -52,7 +51,6 @@ public class BookSB implements BookSBI {
 	/**
 	 * Rimuove un libro
 	 * */
-	@Override
 	public boolean removeBook(String isbn) {
 
 		boolean flag = false;
@@ -67,13 +65,13 @@ public class BookSB implements BookSBI {
 
 
 	/**
-	 * Lancia una query di ricerca su tutti i campi indicati in fields
+	 * Lancia una query di ricerca per tutte le chiavi di ricerca passate come parametro e
+	 * su tutti i campi indicati in fields
 	 * 
 	 * @param searchKey - la parola chiave da ricercare
 	 * @param fields - i campi su cui ricercare
 	 * @return una lista di oggetti Book che soddisfano i parametri di ricerca	
-	 *//*
-	@Override
+	 */
 	public List<Book> searchBook(List<String> searchKeys, List<String> fields) {
 		// creo "l'header" della stringa query
 		String queryStr = "SELECT b from Book b WHERE ";
@@ -107,8 +105,15 @@ public class BookSB implements BookSBI {
 		
 		return null;
 	}
-*/
 
+	public Book getBook(String isbn) {
+		System.out.println("[Book SB] Isbn: "+isbn);
+		Query query = em.createQuery("SELECT b from Book b WHERE b.isbn = '" + isbn +"'");
+		System.out.println("risultato query: "+query.getSingleResult());
+		return (Book) query.getSingleResult();
+	}
+
+	
 
 
 

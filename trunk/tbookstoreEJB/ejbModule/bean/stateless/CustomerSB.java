@@ -33,7 +33,6 @@ public class CustomerSB implements CustomerSBI {
 	 * 
 	 * @return List<Customer> 
 	 * */
-	@Override
 	public List<Customer> findAllCustomers() {
 		System.out.println("dentro alla statefull in findallcustomer");
 		Query query = em.createQuery("Select c from Customer c");
@@ -45,7 +44,6 @@ public class CustomerSB implements CustomerSBI {
 	 * Crea un nuovo cliente nel database. Se esiste gia' un cliente
 	 * registrato con quell'email allora ritorna false; altrimenti true.
 	 * */
-	@Override
 	public boolean createCustomer(String name, String surname, String email, String password) {
 
 		boolean flag = false;
@@ -87,7 +85,6 @@ public class CustomerSB implements CustomerSBI {
 	 * 
 	 * @return Customer l'utente associato o null
 	 * */
-	@Override
 	public Customer login(String email, String password) {
 
 		return getCustomer(email, password);
@@ -99,7 +96,6 @@ public class CustomerSB implements CustomerSBI {
 	 * 
 	 * @return Customer null se non esiste nessun cliente con quell'email
 	 * */
-	@Override
 	public Customer searchCustomer(String email) {
 		
 		return getCustomer(email, null);
@@ -112,7 +108,8 @@ public class CustomerSB implements CustomerSBI {
 	 * @return Customer
 	 * */
 	public Customer getCustomer(String email, String password) {
-
+		
+		System.out.println("[Customer SB] parametri da cercare "+email+" - "+password);
 		Customer findedCustomer = null;
 		try{
 			Query query;
@@ -122,8 +119,14 @@ public class CustomerSB implements CustomerSBI {
 			else
 				query = em.createQuery("SELECT c  FROM Customer c WHERE c.email = '" + email +
 						"' AND c.password = '" + password +"'" );
-			findedCustomer = (Customer)query.getSingleResult();
 			
+			System.out.println("[Customer SB] query:"+query.getSingleResult());
+			
+			if(query.getSingleResult() == null || query == null)
+				System.out.println("[Customer SB] no risultati in query");
+			
+			findedCustomer = (Customer)query.getSingleResult();
+			System.out.println("[Customer SB] customer trovato:"+findedCustomer);
 		}catch(Exception e){
 			System.out.println("[Customer Session Bean:customerExist] Nessun risultato in query!");
 		}
@@ -135,7 +138,6 @@ public class CustomerSB implements CustomerSBI {
 	 * @return true se il cliente e' stato rimosso con successo. 
 	 * 		   False se il cliente non esiste.
 	 * */
-	@Override
 	public boolean removeCustomer(String email, String password) {
 		boolean flag = false;
 

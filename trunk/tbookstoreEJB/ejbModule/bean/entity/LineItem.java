@@ -8,6 +8,7 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
@@ -25,9 +26,18 @@ public class LineItem implements java.io.Serializable {
 	private static final long serialVersionUID = -4756154397300618782L;
 	private long quantity;
 	private LineItemPk pk = new LineItemPk();
+	private Book book;
 
 
+	@Transient
+	public Book getBook() {
+		return book;
+	}
 
+	public void setBook(Book book) {
+		getPk().setBook(book);
+		this.book = book;
+	}
 
 	@EmbeddedId
 	public LineItemPk getPk() {

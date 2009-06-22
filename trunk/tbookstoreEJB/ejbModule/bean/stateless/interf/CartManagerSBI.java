@@ -1,6 +1,7 @@
 package bean.stateless.interf;
 
 import java.util.Collection;
+import java.util.HashMap;
 
 import javax.ejb.Remote;
 import javax.jws.soap.SOAPBinding;
@@ -27,5 +28,4 @@ public interface CartManagerSBI {
 	public String getPaymentType(byte[] handleBytes);
 	
 	public Collection<LineItem> getLineItemList(byte[] handleBytes);
-
 }

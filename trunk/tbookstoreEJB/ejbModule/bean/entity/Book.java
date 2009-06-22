@@ -12,6 +12,8 @@ import javax.persistence.TemporalType;
 
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
+ 
+
 @Entity
 @Table(name = "Book")
 public class Book implements Serializable {
@@ -144,7 +146,9 @@ public class Book implements Serializable {
 		return builder.toHashCode();
 	}
 
-
+	public String toString(){
+		return getIsbn()+"|"+getAuthor()+" - "+getTitle();
+	}
 	
 /*	public boolean equals(Object o) {
 		

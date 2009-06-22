@@ -8,6 +8,9 @@ import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 import java.rmi.RemoteException;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
@@ -32,7 +35,6 @@ public @Stateless(mappedName="CartWebService") class CartManagerSB implements Ca
 	 * 
 	 *  @return byte[] handle della SFSB
 	 * */
-	@Override
 	public byte[] openSession(Customer customer){
 
 		InitialContext ctx;
@@ -70,7 +72,6 @@ public @Stateless(mappedName="CartWebService") class CartManagerSB implements Ca
 	/**
 	 * Chiude la sessione del carrello. Si occupa di rimuove la SFSB dal container.
 	 * */
-	@Override
 	public void closeSession(byte[] handleBytes) {
 		try {
 			getRef(handleBytes).closeCart();
@@ -89,7 +90,6 @@ public @Stateless(mappedName="CartWebService") class CartManagerSB implements Ca
 	/**
 	 * Aggiunge un libro al carrello
 	 * */
-	@Override
 	public void addBook(byte[] handleBytes, Book book) {
 		
 		try {
@@ -100,13 +100,14 @@ public @Stateless(mappedName="CartWebService") class CartManagerSB implements Ca
 		} catch (ClassNotFoundException e) {
 			System.err.println("ERRORE in addBook");
 			e.printStackTrace();
-		}		
+		}	
+		
 	}
 
 	/**
 	 * Rimuove un libro dal carrello.
 	 * */
-	@Override
+	
 	public void removeBookFromCart(byte[] handleBytes, Book book) {
 		
 		try {
@@ -123,7 +124,7 @@ public @Stateless(mappedName="CartWebService") class CartManagerSB implements Ca
 	/**
 	 * Ritorna il tipo di pagamento sotto forma di stringa
 	 * */
-	@Override
+
 	public String getPaymentType(byte[] handleBytes) {
 		
 		String paymentType = "";
@@ -143,7 +144,7 @@ public @Stateless(mappedName="CartWebService") class CartManagerSB implements Ca
 	/**
 	 * Conclude l'ordine. (Commit)
 	 * */
-	@Override
+	
 	public void shipOrder(byte[] handleBytes, String paymentType) {
 		
 		try {
@@ -161,7 +162,6 @@ public @Stateless(mappedName="CartWebService") class CartManagerSB implements Ca
 	/**
 	 * Ritorna la lista delle righe che compongono il carrello.
 	 * */
-	@Override
 	public Collection<LineItem> getLineItemList(byte[] handleBytes) {
 		Collection<LineItem> lineItemList = null;
 		try {
@@ -176,6 +176,8 @@ public @Stateless(mappedName="CartWebService") class CartManagerSB implements Ca
 		
 		return lineItemList;
 	}
+	
+	
 	
 	/**
 	 * Ritorna il riferimento all'interfaccia che espone i metodi della stateful
