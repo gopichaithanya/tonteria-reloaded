@@ -8,14 +8,38 @@
 package bean.stateless;
 
 public class LineItem  implements java.io.Serializable {
+    private bean.stateless.Book book;
+
     private long quantity;
 
     public LineItem() {
     }
 
     public LineItem(
+           bean.stateless.Book book,
            long quantity) {
+           this.book = book;
            this.quantity = quantity;
+    }
+
+
+    /**
+     * Gets the book value for this LineItem.
+     * 
+     * @return book
+     */
+    public bean.stateless.Book getBook() {
+        return book;
+    }
+
+
+    /**
+     * Sets the book value for this LineItem.
+     * 
+     * @param book
+     */
+    public void setBook(bean.stateless.Book book) {
+        this.book = book;
     }
 
 
@@ -50,6 +74,9 @@ public class LineItem  implements java.io.Serializable {
         __equalsCalc = obj;
         boolean _equals;
         _equals = true && 
+            ((this.book==null && other.getBook()==null) || 
+             (this.book!=null &&
+              this.book.equals(other.getBook()))) &&
             this.quantity == other.getQuantity();
         __equalsCalc = null;
         return _equals;
@@ -62,6 +89,9 @@ public class LineItem  implements java.io.Serializable {
         }
         __hashCodeCalc = true;
         int _hashCode = 1;
+        if (getBook() != null) {
+            _hashCode += getBook().hashCode();
+        }
         _hashCode += new Long(getQuantity()).hashCode();
         __hashCodeCalc = false;
         return _hashCode;
@@ -74,6 +104,13 @@ public class LineItem  implements java.io.Serializable {
     static {
         typeDesc.setXmlType(new javax.xml.namespace.QName("http://stateless.bean/", "lineItem"));
         org.apache.axis.description.ElementDesc elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("book");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "book"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://stateless.bean/", "book"));
+        elemField.setMinOccurs(0);
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("quantity");
         elemField.setXmlName(new javax.xml.namespace.QName("", "quantity"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "long"));
