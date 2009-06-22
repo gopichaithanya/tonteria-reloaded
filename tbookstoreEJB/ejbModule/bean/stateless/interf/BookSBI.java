@@ -16,10 +16,11 @@ public interface BookSBI {
 
 	public boolean removeBook(String isbn);
 
-//	public List<Book> searchBook(List<String> searchKeys, List<String> fields);
+	public List<Book> searchBook(List<String> searchKeys, List<String> fields);
 
-	Book insertBook(String title, String author, String isbn, int price,
+	public Book insertBook(String title, String author, String isbn, int price,
 			String editor, String imagePath, String description);
-
+	
+	public Book getBook(String isbn);
 	
 }

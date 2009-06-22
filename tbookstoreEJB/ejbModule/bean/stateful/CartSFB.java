@@ -119,7 +119,7 @@ public class CartSFB implements CartSFBI, Serializable {
 		// se non lo e' creo la lineItem e la aggiungo alla lista
 		if(!flag) {
 			LineItem lineItem = new LineItem();
-			lineItem.getPk().setBook(book);
+			lineItem.setBook(book);
 			lineItem.setQuantity(1);
 			lineItem.getPk().setOrder(order);
 			System.out.println("---------------------------aggiungo un nuovo libro");

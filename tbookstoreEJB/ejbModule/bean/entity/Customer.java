@@ -95,7 +95,7 @@ public class Customer implements Serializable, CycleRecoverable {
 	}
 	
 	//workaround per evitare cicli
-	@Override
+	
 	public Object onCycleDetected(Context context) {
 		
 		return null;
