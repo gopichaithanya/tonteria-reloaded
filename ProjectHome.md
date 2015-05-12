@@ -1,0 +1,1 @@
+bookstore with jboss AS 5.0 and EJB 3.0
